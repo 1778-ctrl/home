@@ -1,96 +1,189 @@
 /* 基础样式 */
+:root {
+    --primary-color: #ff7eb9; /* 主粉色 */
+    --secondary-color: #ffd1dc; /* 浅粉色 */
+    --accent-color: #ff6f61; /* 强调色 */
+    --text-color: #4a4a4a; /* 正文颜色 */
+    --background-color: #fff5f8; /* 背景色 */
+}
+
 body {
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
-  color: #2E7D32;
-  background: linear-gradient(135deg, #F1F8E9, #C8E6C9);
-  margin: 0;
-  padding: 0;
+    font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* 头部样式 */
 .hero {
-  background: rgba(56, 142, 60, 0.9);
-  color: white;
-  padding: 4rem 2rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/floral-pattern.png') repeat;
+    opacity: 0.1;
+    pointer-events: none;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-.subtitle {
-  font-size: 1.5rem;
-  font-style: italic;
+.hero .subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 
-/* 主要内容区域 */
-main {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
+/* 内容区域样式 */
 section {
-  background: white;
-  padding: 2rem;
-  margin: 2rem 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 60px 0;
 }
 
 h2 {
-  color: #388E3C;
-  border-bottom: 2px solid #C8E6C9;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    position: relative;
 }
 
-/* 列表样式 */
-ul {
-  list-style: none;
-  padding: 0;
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
 }
 
-li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #E8F5E9;
+/* 技能列表样式 */
+.skills ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-li:last-child {
-  border-bottom: none;
+.skills li {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-/* 联系方式样式 */
-.contact p {
-  font-size: 1.2rem;
-  font-weight: bold;
+.skills li:hover {
+    transform: translateY(-5px);
+}
+
+/* 教育经历时间轴样式 */
+.timeline {
+    position: relative;
+    padding: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: var(--primary-color);
+}
+
+.item {
+    width: 45%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.item:nth-child(odd) {
+    margin-left: 55%;
+}
+
+.item:nth-child(even) {
+    margin-right: 55%;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: 3px solid white;
+}
+
+.item:nth-child(odd)::before {
+    left: -30px;
+}
+
+.item:nth-child(even)::before {
+    right: -30px;
 }
 
 /* 页脚样式 */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #388E3C;
-  color: white;
-  margin-top: 3rem;
+footer.contact {
+    background: var(--primary-color);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer h2 {
+    color: white;
+}
+
+footer h2::after {
+    background: white;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-  .subtitle {
-    font-size: 1.2rem;
-  }
-  
-  section {
-    padding: 1rem;
-  }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .item {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+    
+    .item::before {
+        left: -10px !important;
+        right: auto !important;
+    }
 }
